@@ -1,0 +1,83 @@
+# 🔍 Needle
+
+Needle is a lightweight command-line search engine written in Java that helps users quickly find text within local files.
+
+The goal of the project is to explore core Java concepts such as object-oriented programming, file handling, collections, and exception handling by building a practical tool from scratch.
+
+## Features
+
+### Current
+- Search for a word or phrase in text files
+- Display which files contain the search term
+- Simple command-line interface
+- Case-insensitive searching
+
+### Planned
+- Count the number of matches in each file
+- Display matching lines with line numbers
+- Support searching multiple words
+- Build a searchable index for faster lookups
+- Filter searches by file extension
+- Recursive folder searching
+- Improved result ranking
+
+## Why I Built This
+
+I wanted to move beyond typical beginner projects like library or student management systems and build something that solves a real problem while strengthening my Java skills.
+
+Needle is also part of my portfolio for developing practical software engineering and problem-solving experience.
+
+## Technologies
+
+- Java
+- Object-Oriented Programming
+- Collections Framework
+- File I/O
+- Exception Handling
+
+## Example
+
+Searching for:
+
+```
+java
+```
+
+Could produce:
+
+```
+Found 3 matching files:
+
+guide.txt
+notes.txt
+tutorial.txt
+```
+
+Future versions may display:
+
+```
+guide.txt (8 matches)
+notes.txt (2 matches)
+tutorial.txt (1 match)
+```
+
+## Learning Goals
+
+This project is designed to help me practice:
+
+- Designing classes and methods
+- Reading and processing files
+- Working with collections
+- Handling exceptions gracefully
+- Building maintainable command-line applications
+- Incrementally improving software through multiple versions
+
+## Project Status
+
+🚧 In active development.
+
+The project is intentionally being built in small, understandable phases with a focus on learning rather than rushing features.
+
+## License
+
+This project is available for educational and portfolio purposes.
