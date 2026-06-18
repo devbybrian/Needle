@@ -26,7 +26,6 @@ class NeedleSearchEngine
             // list folder and read the file and search for the term
             fileList = readFolder(folderPath.toString());
 
-            getFolderPath(folderPath);
             searchFile(keyword, fileList);
 
         } catch (FileNotFoundException e)
@@ -81,59 +80,74 @@ class NeedleSearchEngine
     public static void searchFile(String keyword, List<String> fileList) throws IOException
     {
         String fileName = "";
-        keyword = keyword.toLowerCase();
-        List<String> matchingFiles = new ArrayList<>();
 
-        // read each file in the list and search for a keyword
-        for (String filePathStr : fileList)
+        for (String file : fileList)    // FILE LOOP
         {
-            try
-            {
-                Path filePath = Paths.get(filePathStr); // convert string to Path
-                List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
-                String content = String.join("\n", lines).toLowerCase();
-                
+            int count = 0;
+            fileName = Path.of(file).getFileName().toString(); // gets file name separate from path
+            // System.out.println(fileName);
 
-                fileName = filePath.getFileName().toString(); // extract just the file name
-                
-                if (searchText(content, keyword))
+            try (BufferedReader reader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) // prints file contents
+            {
+                String line = "";
+                while ((line = reader.readLine()) != null)   // LINE LOOP
                 {
-                    matchingFiles.add(fileName);
-                }                
-            } catch (IOException e)
+                    // search for a keyword
+                    count += searchText(line, keyword);
+                }
+            } catch(IOException e)
             {
-                System.err.println("Error reading file " + filePathStr + ": " + e.getMessage());
+                e.printStackTrace();
             }
-        }
-        
-        if (matchingFiles.isEmpty())
-        {
-            System.out.println("No files contained '" + keyword + "'");
-        }
-        else
-        {
-            System.out.println("Found " + keyword + " in: ");
-            for (String file : matchingFiles)
+
+            if (count >= 1)
             {
-                System.out.println("- " + file);
+                System.out.println(keyword + " found in: ");
+                System.out.println("- " + fileName + " - " + count + " match(es)");
             }
+            else
+            {
+                System.out.println(keyword + " not found");
+            }
+
+            count = 0;
         }
     }
 
-    public static boolean searchText(String fileContent, String keyword)
+    
+    public static int searchText(String fileContent, String keyword)
     {
-        return fileContent.contains(keyword);
-    }
+        // split text into words
+        int count = 0;
+        String regex = "[,\\.\\s]";
+        String[] words = fileContent.split(regex);
 
-    // print folder path info
-    public static void getFolderPath(Path folderPath)
-    {
-        if (folderPath == null)
+        // loop through every word
+        for (String word : words)
         {
-            System.out.println("Folder path is null");
-            return;
+            if (keyword.equalsIgnoreCase(word))
+            {
+                count++;
+            }
         }
-        System.out.println("Searching folder: " + folderPath.toString());
+        return count;
     }
 }
 
+/*
+    searchFile()
+        loops through files
+        reads contents
+        asks searchText() for match count
+        prints results
+
+    searchText()
+        counts how many times keyword appears
+        returns the count
+
+        Split text into words
+        Loop through words
+        Compare each word with keyword
+        Count matches
+        Return count
+*/
