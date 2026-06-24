@@ -121,19 +121,50 @@ class NeedleSearchEngine
 
     public static int searchText(String fileContent, String keyword)
     {
-        // split text into words
-        int count = 0;
-        String regex = "[,\\.\\s]";
-        String[] words = fileContent.split(regex);
+        // clean text -> tokenize -> normalize tokens -> match
+        String[] tokens = normalizeTokens(fileContent);
+    
+        return countMatches(tokens, keyword);
+    }
 
-        // loop through every word
-        for (String word : words)
+    public static String cleanText(String fileContent)
+    {
+        String cleanedFileContent = fileContent.replaceAll("\\p{Punct}", " ");
+
+        return cleanedFileContent;
+    }
+
+    public static String[] tokenize(String fileContent)
+    {
+        String[] cleanedWords = cleanText(fileContent).trim().split("\\s+");
+        return cleanedWords;
+    }
+
+    public static String[] normalizeTokens(String fileContent)
+    {
+        String[] tokens = tokenize(fileContent);
+        String[] normalizedTokens = new String[tokens.length];
+
+        for (int i = 0; i < tokens.length; i++)
         {
-            if (keyword.equalsIgnoreCase(word))
+            normalizedTokens[i] = tokens[i].toLowerCase();
+        }
+
+        return normalizedTokens;
+    }
+
+    public static int countMatches(String[] tokens, String keyword)
+    {
+        int count = 0;
+        
+        for (String token : tokens)
+        {
+            if (token.equals(keyword))
             {
                 count++;
             }
         }
+
         return count;
     }
 
@@ -169,18 +200,3 @@ class NeedleSearchEngine
         }
     }
 }
-
-/*
-    Searching folder:
-    C:\Documents\Me
-
-    Keyword: java
-
-    Results:
-    - notes.txt (4 matches)
-    - tutorial.txt (2 matches)
-
-    Total files searched: 7
-    Files containing keyword: 2
-    Total matches: 6
-*/
