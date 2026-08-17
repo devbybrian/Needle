@@ -1,83 +1,80 @@
-# 🔍 Needle
+# Needle
 
-Needle is a lightweight command-line search engine written in Java that helps users quickly find text within local files.
+A lightweight command-line file search utility built with Java.
 
-The goal of the project is to explore core Java concepts such as object-oriented programming, file handling, collections, and exception handling by building a practical tool from scratch.
+Needle allows a user to search text files for a specified keyword or phrase and identify which files contain matching content.
 
-## Features
+## Overview
 
-### Current
-- Search for a word or phrase in text files
-- Display which files contain the search term
-- Simple command-line interface
-- Case-insensitive searching
+Needle was created as a Java learning project focused on file handling, collections, user input and exception handling.
 
-### Planned
-- Count the number of matches in each file
-- Display matching lines with line numbers
-- Support searching multiple words
-- Build a searchable index for faster lookups
-- Filter searches by file extension
-- Recursive folder searching
-- Improved result ranking
+The application works with local files and directories and searches the contents of text files for user-provided search terms.
 
-## Why I Built This
+## Current Features
 
-I wanted to move beyond typical beginner projects like library or student management systems and build something that solves a real problem while strengthening my Java skills.
-
-Needle is also part of my portfolio for developing practical software engineering and problem-solving experience.
+- Accept a directory path from the user
+- Validate the supplied path
+- Search `.txt` files within the selected directory
+- Search file contents using a user-provided keyword or phrase
+- Perform case-insensitive searches
+- Display files containing matching content
+- Handle invalid file paths
+- Handle file access and input/output errors
 
 ## Technologies
 
 - Java
+- Java File I/O
+- Java Collections Framework
 - Object-Oriented Programming
-- Collections Framework
-- File I/O
-- Exception Handling
+
+## Concepts Practiced
+
+- Classes and objects
+- Methods
+- Collections
+- `ArrayList` / `List`
+- File and directory handling
+- Reading files
+- User input
+- Exception handling
+- Input validation
+- Command-line applications
+
+## How It Works
+
+The user provides a directory path and a search term.
+
+Needle validates the supplied path and processes the text files in the directory. It reads the contents of the files and checks for the specified search term.
+
+The search is case-insensitive, so differences in capitalization do not prevent a match.
 
 ## Example
 
-Searching for:
+A user can provide:
 
-```
-java
-```
+```text
+Directory: C:\Documents\Notes
+Search term: programming
 
-Could produce:
-
-```
-Found 3 matching files:
-
-guide.txt
-notes.txt
-tutorial.txt
-```
-
-Future versions may display:
-
-```
-guide.txt (8 matches)
-notes.txt (2 matches)
-tutorial.txt (1 match)
-```
-
-## Learning Goals
-
-This project is designed to help me practice:
-
-- Designing classes and methods
-- Reading and processing files
-- Working with collections
-- Handling exceptions gracefully
-- Building maintainable command-line applications
-- Incrementally improving software through multiple versions
+Needle then searches the applicable text files and reports the files containing the term.
 
 ## Project Status
 
-🚧 In active development.
+Learning and portfolio project.
 
-The project is intentionally being built in small, understandable phases with a focus on learning rather than rushing features.
+The current version focuses on basic file searching and Java file-handling concepts.
 
-## License
+## Future Plans
 
-This project is available for educational and portfolio purposes.
+Possible future improvements include:
+
+- Recursive directory searching
+- Additional file formats
+- Improved search result information
+- Search result counting
+- More advanced search options
+- Improved command-line interaction
+
+## Author
+Brian Mkandla
